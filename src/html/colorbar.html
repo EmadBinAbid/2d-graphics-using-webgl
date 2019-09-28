@@ -1,0 +1,72 @@
+<!--
+ * File:        colorbar.html
+ * Author:      Anonymous
+ * Created On:  15/09/2019
+ * Description: /////////////////// 
+-->
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title> Assignment 2 - Color Bar </title>
+
+	<!--
+	Here we add our shaders  and description of the page 
+	buttons etc will be here as well whereas its corresponding code will be in the app 
+	The shaders are programs that are compiled in the drivers
+	-->
+
+	<script id="vertex-shader" type="x-shader/x-vertex">
+		attribute vec4 vertexPosition;			// Attribute used to specify that the value is inputed to the shader from the application
+		attribute vec4 vertexColor;			// Attribute used to specify that the value is inputed to the shader from the application 
+	
+		varying vec4 fragmentColor;			// Attribute used to specify that the value is inputed to the shader from the application
+		void main()
+		{
+			gl_PointSize = 5.0;			// Optional
+				
+			fragmentColor = vertexColor;
+			// The position must be outputed by every vertex shader 
+			gl_Position = vertexPosition;		//gl_Position is a built-in variable which is the position that is passed to the rasterizer
+		}
+	</script>
+
+	<!-- Each execution of the fragment shader must output a color for the fragment unless the fragment is to be discarded -->
+	<script id="fragment-shader" type="x-shader/x-fragment">
+		precision mediump float;
+		
+		varying vec4 fragmentColor;			// Attribute used to specify that the value is inputed to the shader from the application
+	
+		void main()
+		{
+			gl_FragColor = fragmentColor;	// Assigns a 4-d RGBA color to each fragment using the built-in variable gl_FragColor
+		}
+	</script>
+
+	<!-- Contains utilities needed to create the WEBGL canvas object -->
+	<script type="text/javascript" src="../js/webgl-utils.js"></script>
+	<!-- Contains the code to read, compile and link shaders -->
+	<script type="text/javascript" src="../js/initShaders.js"></script>
+
+	<!-- For Use in Live Environment -->
+	<!-- <script type="text/javascript" src="https://www.cs.unm.edu/~angel/BOOK/INTERACTIVE_COMPUTER_GRAPHICS/SEVENTH_EDITION/CODE/Common/MV.js"></script> -->
+
+	<!-- For Use in Development Environment -->
+	<script type="text/javascript" src="../js/MV.js"></script>
+	<script type="text/javascript" src="../js/config.js"></script>
+	<script type="text/javascript" src="../js/helper.js"></script>
+	<script type="text/javascript" src="../js/logger.js"></script>
+	<script type="text/javascript" src="../js/triangle.js"></script>
+	<script type="text/javascript" src="../js/map.js"></script>
+	<script type="text/javascript" src="../js/webgl-handler.js"></script>
+	<script type="text/javascript" src="../js/colorbar.js"></script>
+</head>
+
+<body>
+
+</body>
+
+</html>
